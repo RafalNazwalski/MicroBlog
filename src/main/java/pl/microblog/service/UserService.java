@@ -38,4 +38,17 @@ public class UserService {
 		boolean check = BCrypt.checkpw(password, hashedPassword);
 		return check;
 	}
+	
+	public boolean validateUser(User user){
+		if(user.getLogin() == null){
+			return false;
+		}
+		 User userBylogin = userdao.getUserBylogin(user.getLogin());
+		 boolean correctUser = true;
+		 if(userBylogin == null){
+			correctUser = false;
+		 }
+		 return correctUser;
+	}
+	
 }

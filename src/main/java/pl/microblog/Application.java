@@ -16,5 +16,12 @@ public class Application {
 		new WebConfiguration(ctx.getBean(UserService.class));
 		ctx.registerShutdownHook();
 	}
+	
+	/*
+	 * 1. dokonczyc logowanie - sprawdzanie hasla
+	 * 2. uporzadkowac kod
+	 * 3. dodac rejestracje
+	 * 4. walidacja?
+	 */
 
 }
