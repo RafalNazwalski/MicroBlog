@@ -30,7 +30,6 @@ public class WebConfiguration {
 			String password = request.queryParams("password");
 			User user = new User();
 			user.setLogin(login);
-			userService.encodePassword(password);
 			user.setPassword(password);
 			boolean validateUser = userService.validateUser(user);
 			if(validateUser){
@@ -62,6 +61,28 @@ public class WebConfiguration {
 			User authUser = getUserFromSession(request);
 			if(authUser == null) {
 				response.redirect("/");
+			}
+		});
+		
+		
+		get("/register", (request,response) -> {
+			return new ModelAndView(null, "register.ftl");
+		}, new FreeMarkerEngine());
+		
+		
+		post("/register", (request,response) -> {
+			String firstname = request.queryParams("firstname");
+			String lastname = request.queryParams("lastname");
+			String login = request.queryParams("login");
+			String password = request.queryParams("password");
+			User user = new User(firstname,lastname,login,password);
+			userService.createUser(user);
+			return modelAndView(null, "registerSuccess.ftl");
+		}, new FreeMarkerEngine());
+		before("/register", (request, response) -> {
+			User authUser = getUserFromSession(request);
+			if(authUser != null) {
+				response.redirect("/blog");
 			}
 		});
 		

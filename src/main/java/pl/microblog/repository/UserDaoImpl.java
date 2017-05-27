@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao {
 		params.put("lastname", user.getLastName());
 		params.put("login", user.getLogin());
 		params.put("password", user.getPassword());
-		
+		template.update(CREATE_USER, params);
 	}
 	
 	

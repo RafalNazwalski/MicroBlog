@@ -24,7 +24,10 @@ public class UserService {
 	}
 	
 	public void createUser(User user){
-		user.setPassword(encodePassword(user.getPassword()));
+		//user.setPassword(encodePassword(user.getPassword()));
+		String encodePassword = encodePassword(user.getPassword());
+		user.setPassword(encodePassword);
+		System.out.println(encodePassword);
 		userdao.createUser(user);
 	}
 	
@@ -34,7 +37,7 @@ public class UserService {
 		return hashedPassword;
 	}
 	
-	public boolean verifyPassword(String password, String hashedPassword) {
+	private boolean verifyPassword(String password, String hashedPassword) {
 		boolean check = BCrypt.checkpw(password, hashedPassword);
 		return check;
 	}
@@ -46,7 +49,10 @@ public class UserService {
 		 User userBylogin = userdao.getUserBylogin(user.getLogin());
 		 boolean correctUser = true;
 		 if(userBylogin == null){
-			correctUser = false;
+			return false;
+		 }
+		 if(!verifyPassword(user.getPassword(), userBylogin.getPassword())){
+			 correctUser = false;
 		 }
 		 return correctUser;
 	}

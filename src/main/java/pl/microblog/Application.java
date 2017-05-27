@@ -18,10 +18,8 @@ public class Application {
 	}
 	
 	/*
-	 * 1. dokonczyc logowanie - sprawdzanie hasla
-	 * 2. uporzadkowac kod
-	 * 3. dodac rejestracje
-	 * 4. walidacja?
+	 * 1. Zrobic rejestracje
+	 * 2. walidacja?
 	 */
 
 }
