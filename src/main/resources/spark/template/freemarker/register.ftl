@@ -9,13 +9,13 @@
 <h1>Rejestracja</h1>
 <form action="/register" method="post">
 <label>Imie: </label></br>
-<input type="text" name="firstname" placeholder="Imie"></br><br>
+<input type="text" name="firstname" placeholder="Imiƒô"></br><br>
 <label>Nazwisko: </label></br>
 <input type="text" name="lastname" placeholder="Nazwisko"></br><br>
 <label>Login: </label></br>
 <input type="text" name="login" placeholder="login"></br><br>
-<label>Has≥o: </label></br>
-<input type="password" name="password" placeholder="Has≥o"></br><br>
+<label>Has≈Ço: </label></br>
+<input type="password" name="password" placeholder="Has≈Ço"></br><br>
 <input type="submit" value="Zarejestruj"> 
 </form>
 </body>
