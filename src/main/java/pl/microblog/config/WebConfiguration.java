@@ -2,14 +2,24 @@ package pl.microblog.config;
 
 import static spark.Spark.*;
 
+import freemarker.template.Template;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import pl.microblog.Application;
 import pl.microblog.model.User;
 import pl.microblog.service.UserService;
 import spark.ModelAndView;
 import spark.Request;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import javax.security.auth.login.Configuration;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class WebConfiguration {
-	
+
 	private UserService userService;
 	
 	public WebConfiguration(UserService userService){
@@ -61,6 +71,13 @@ public class WebConfiguration {
 			User authUser = getUserFromSession(request);
 			if(authUser == null) {
 				response.redirect("/");
+			}
+			List<String> users;
+
+			users = userService.getAllUsers();
+
+			for (String user : users){
+			System.out.println("Users: " + user);
 			}
 		});
 		

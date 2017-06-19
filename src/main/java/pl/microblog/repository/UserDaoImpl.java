@@ -1,5 +1,6 @@
 package pl.microblog.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class UserDaoImpl implements UserDao {
 	private static final String GET_USER_BY_LOGIN = "SELECT * FROM uzytkownik WHERE login = :login";
 	private static final String CREATE_USER = "INSERT INTO uzytkownik(firstname, lastname, login, password) "
 			+ "values (:firstname, :lastname, :login,:password)";
+	private static final String GET_ALL_USERS = "SELECT * FROM uzytkownik";
 	
 	@Autowired
 	public UserDaoImpl(DataSource ds) {
@@ -49,8 +51,23 @@ public class UserDaoImpl implements UserDao {
 		params.put("password", user.getPassword());
 		template.update(CREATE_USER, params);
 	}
-	
-	
+
+	@Override
+	public List<String> getAllUsers() {
+		List<User> query = template.query(GET_ALL_USERS, userMapper);
+
+		List<String> resultUsers = new ArrayList<String>();
+
+		for(int i=0; i < query.size(); i++){
+
+			if(query != null && !query.isEmpty()) {
+				resultUsers.add(query.get(i).getLogin());
+			}
+		}
+		return resultUsers;
+	}
+
+
 	private RowMapper<User> userMapper = (resultSet, rowNum) -> {
 		User user = new User();
 		

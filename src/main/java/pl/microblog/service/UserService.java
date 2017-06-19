@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import pl.microblog.model.User;
 import pl.microblog.repository.UserDao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserService {
 	
@@ -21,6 +24,11 @@ public class UserService {
 	public User getUserBylogin(String login){
 		User userBylogin = userdao.getUserBylogin(login);
 		return userBylogin;
+	}
+
+	public List<String> getAllUsers(){
+		List<String> allUsers = userdao.getAllUsers();
+		return allUsers;
 	}
 	
 	public void createUser(User user){
@@ -48,6 +56,7 @@ public class UserService {
 		}
 		 User userBylogin = userdao.getUserBylogin(user.getLogin());
 		 boolean correctUser = true;
+
 		 if(userBylogin == null){
 			return false;
 		 }
