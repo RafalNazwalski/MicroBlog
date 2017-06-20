@@ -9,11 +9,11 @@
 <h1>Logowanie</h1>
 <form action="/" method="post">
 <label>Login: </label></br>
-<input type="text" name="login" placeholder="login"></br><br>
-<label>Has�o: </label></br>
-<input type="password" name="password" placeholder="Has�o"></br><br>
-<input type="submit" value="Zaloguj sie"> </br>
-<a href="register">Nie masz konta? Zarejestruj sie</a>
+<input type="text" name="login" placeholder="Login"></br><br>
+<label>Hasło: </label></br>
+<input type="password" name="password" placeholder="Hasło"></br><br>
+<input type="submit" value="Zaloguj się"> </br>
+<a href="register">Nie masz konta? Zarejestruj się</a>
 </form>
 </body>
 </html>

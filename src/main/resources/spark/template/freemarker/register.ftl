@@ -42,8 +42,8 @@
         </span>
  </#if>
 </br><br>
-<label>Has≥o: </label></br>
-<input type="password" name="password" placeholder="Has≥o">
+<label>Has≈Ço: </label></br>
+<input type="password" name="password" placeholder="Has≈Ço">
 <#if passwordInvalid??>
         <span class="textInvalidFields">
             ${passwordInvalid}
