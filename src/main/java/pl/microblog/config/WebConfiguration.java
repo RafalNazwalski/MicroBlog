@@ -25,6 +25,7 @@ public class WebConfiguration {
 	public WebConfiguration(UserService userService){
 		this.userService = userService;
 		staticFileLocation("/public");
+		port(50000);
 		setRoutes();
 		
 	}
