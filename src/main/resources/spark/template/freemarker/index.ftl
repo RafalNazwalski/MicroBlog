@@ -22,18 +22,18 @@
                                         <div class="panel-heading text-center">
                                                 <h3>Logowanie</h3>
                                         </div>
-                                        <div class-"panel-body">
+                                        <div class="panel-body">
                                                 <form action="/" method="post" class="form-horizontal">
                                                         <div class="form-group">
-                                                                <label class=col-lg-2 control-label">Login:</label>
+                                                                <label class="col-lg-2 control-label">Login:</label>
                                                                 <div class="col-lg-8">
-                                                                        <input type="text" class="control-label" placeholder="Login..." />
+                                                                        <input type="text" name="login" class="control-label" placeholder="Login..." />
                                                                 </div>
                                                         </div>
                                                         <div class="form-group">
-                                                                <label class=col-lg-2 control-label">Hasło:</label>
+                                                                <label class="col-lg-2 control-label">Hasło:</label>
                                                                 <div class="col-lg-8">
-                                                                        <input type="password" placeholder="Hasło..." class="control-label" />
+                                                                        <input type="password" name="password" placeholder="Hasło..." class="control-label" />
                                                                 </div>
                                                         </div>
                                                         <div class="row">
@@ -44,7 +44,7 @@
                                                 </form>
                                         </div>
                                 </div>
-                                Nie masz konta? <a href="register.ftl">zarejestruj się</a>
+                                Nie masz konta? <a href="register">Zarejestruj się</a>
                         </div>
                 </div>
         </div>

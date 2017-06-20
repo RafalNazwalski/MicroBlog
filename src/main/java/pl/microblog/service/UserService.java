@@ -3,13 +3,13 @@ package pl.microblog.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.microblog.model.User;
 import pl.microblog.repository.UserDao;
+import spark.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,10 +72,10 @@ public class UserService {
 	
 	public Map<String,String> getErrorsWhileRegister(User user){
 		HashMap<String, String> errors = new HashMap<>();
-		if(StringUtils.isEmpty(user.getFirstName())) errors.put("firstNameInvalid", "Proszê wype³niæ imiê.");
-		if(StringUtils.isEmpty(user.getLastName())) errors.put("lastNameInvalid","Proszê wype³niæ nazwisko.");
+		if(StringUtils.isEmpty(user.getFirstName())) errors.put("firstNameInvalid", "Proszï¿½ wypeï¿½niï¿½ imiï¿½.");
+		if(StringUtils.isEmpty(user.getLastName())) errors.put("lastNameInvalid","Proszï¿½ wypeï¿½niï¿½ nazwisko.");
 		if(StringUtils.isEmpty(user.getLogin())) errors.put("loginInvalid", "Nie podano loginu");
-		if(StringUtils.isEmpty(user.getPassword())) errors.put("passwordInvalid", "WprowadŸ has³o");
+		if(StringUtils.isEmpty(user.getPassword())) errors.put("passwordInvalid", "Wprowadï¿½ hasï¿½o");
 		return errors;
 	}
 	

@@ -19,7 +19,6 @@
                 <tr>
                     <td>Lista uzytkownikow z bazy</td>
 
-
                 </tr>
             </table>
         </td>
