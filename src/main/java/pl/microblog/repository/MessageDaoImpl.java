@@ -25,10 +25,12 @@ public class MessageDaoImpl implements MessageDao{
 	private static final String REMOVE_MESSAGE_BY_WPIS_ID = "DELETE * FROM wpis WHERE wpis_id = :wpis_id";
 			
 	private static final String GET_MESSAGES = "select * from uzytkownik u"
- + "where u.uzytkownik_id = :id"
- + "join follower f on u.uzytkownik_id = f.userid"
- +"join wpis w on f.followee_id = w.author_id";
-	
+ 		+ "where u.uzytkownik_id = :id"
+ 		+ "join follower f on u.uzytkownik_id = f.userid"
+		+"join wpis w on f.followee_id = w.author_id";
+
+	public MessageDaoImpl(){}
+
 	public MessageDaoImpl(DataSource ds) {
 		template = new NamedParameterJdbcTemplate(ds);
 	}

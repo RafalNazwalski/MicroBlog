@@ -23,7 +23,7 @@
                                                 <h2>Logowanie</h2>
                                         </div>
                                         <div class="panel-body">
-                                                <form action="/blog" method="post" class="form-horizontal">
+                                                <form action="/" method="post" class="form-horizontal">
                                                         <fieldset>
                                                                 <div class="form-group">
                                                                         <label class="col-lg-2 control-label">Login:</label>

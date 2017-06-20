@@ -100,7 +100,7 @@ public class WebConfiguration {
 			User user = new User(firstname,lastname,login,password);
 			Map<String, String> errorsWhileRegister = userService.getErrorsWhileRegister(user);
 			
-			if(errorsWhileRegister == null){
+			if(errorsWhileRegister.isEmpty()){
 				userService.createUser(user);
 				return modelAndView(null, "registerSuccess.ftl");
 			}else{

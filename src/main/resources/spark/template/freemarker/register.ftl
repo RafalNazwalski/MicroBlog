@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Nazwisko:</label>
                                 <div class="col-lg-8">
-                                    <input type="password" name="lastname" class="form-control" />
+                                    <input type="text" name="lastname" class="form-control" />
                                 </div>
                                 <#if lastNameInvalid??>
                                     <span class="text-danger">
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">Login:</label>
                                 <div class="col-lg-8">
-                                    <input type="password" name="login" class="form-control" />
+                                    <input type="text" name="login" class="form-control" />
                                 </div>
                                 <#if loginInvalid??>
                                     <span class="text-danger">
