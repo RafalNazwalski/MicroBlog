@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Message {
 	
-	private String author;
+	private Integer id;
+	private Integer author;
 	private Date date;
 	private String text;
-	private Integer id;
-	public Message(String author, Date date, String text) {
+	public Message(Integer author, Date date, String text) {
 		this.author = author;
 		this.date = date;
 		this.text = text;
@@ -16,7 +16,7 @@ public class Message {
 	
 	@Override
 	public String toString() {
-		return "Message [author=" + author + ", date=" + date + ", text=" + text + ", id=" + id + "]";
+		return "Message [id=" + id + ", author=" + author + ", date=" + date + ", text=" + text + "]";
 	}
 
 	@Override
@@ -65,10 +65,10 @@ public class Message {
 	public Message(){
 	}
 
-	public String getAuthor() {
+	public Integer getAuthor() {
 		return author;
 	}
-	public void setAuthor(String author) {
+	public void setAuthor(Integer author) {
 		this.author = author;
 	}
 	public Date getDate() {
@@ -89,6 +89,4 @@ public class Message {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-		
-
 }

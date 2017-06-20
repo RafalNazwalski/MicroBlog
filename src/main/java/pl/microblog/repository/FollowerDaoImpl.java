@@ -6,10 +6,13 @@ import pl.microblog.model.User;
 
 @Repository
 public class FollowerDaoImpl implements FollowerDao{
-
+	
+	
+	private static final String ADD_TO_FOLLOWER = "INSERT INTO follower(userid,folowee_id) VALUES(:userId,:foloweeId)";
+	
 	@Override
 	public void addUserToFollower(User user) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

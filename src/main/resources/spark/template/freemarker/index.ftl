@@ -20,31 +20,33 @@
                         <div class="col-lg-4 col-lg-offset-4">
                                 <div class="panel panel-primary">
                                         <div class="panel-heading text-center">
-                                                <h3>Logowanie</h3>
+                                                <h2>Logowanie</h2>
                                         </div>
                                         <div class="panel-body">
-                                                <form action="/" method="post" class="form-horizontal">
-                                                        <div class="form-group">
-                                                                <label class="col-lg-2 control-label">Login:</label>
-                                                                <div class="col-lg-8">
-                                                                        <input type="text" name="login" class="control-label" placeholder="Login..." />
+                                                <form action="/blog" method="post" class="form-horizontal">
+                                                        <fieldset>
+                                                                <div class="form-group">
+                                                                        <label class="col-lg-2 control-label">Login:</label>
+                                                                        <div class="col-lg-8">
+                                                                                <input type="text" name="login" class="form-control" placeholder="Login..." />
+                                                                        </div>
                                                                 </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                                <label class="col-lg-2 control-label">Hasło:</label>
-                                                                <div class="col-lg-8">
-                                                                        <input type="password" name="password" placeholder="Hasło..." class="control-label" />
+                                                                <div class="form-group">
+                                                                        <label class="col-lg-2 control-label">Hasło:</label>
+                                                                        <div class="col-lg-8">
+                                                                                <input type="password" name="password" placeholder="Hasło..." class="form-control" />
+                                                                        </div>
                                                                 </div>
-                                                        </div>
-                                                        <div class="row">
-                                                                <div class="col-lg-2 col-lg-offset-8">
-                                                                        <input type="submit" class="btn btn-success" value="Zaloguj" />
+                                                                <div class="row">
+                                                                        <div class="col-lg-2 col-lg-offset-8">
+                                                                                <input type="submit" class="btn btn-success" value="Zaloguj" />
+                                                                        </div>
                                                                 </div>
-                                                        </div>
+                                                        </fieldset>
                                                 </form>
                                         </div>
                                 </div>
-                                Nie masz konta? <a href="register">Zarejestruj się</a>
+                                Nie masz konta? <a href="register">zarejestruj się</a>
                         </div>
                 </div>
         </div>
