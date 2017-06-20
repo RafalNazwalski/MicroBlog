@@ -2,19 +2,30 @@ package pl.microblog.config;
 
 import static spark.Spark.*;
 
+import java.util.Map;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import pl.microblog.Application;
 import pl.microblog.model.User;
 import pl.microblog.service.UserService;
 import spark.ModelAndView;
 import spark.Request;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import javax.security.auth.login.Configuration;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class WebConfiguration {
-	
+
 	private UserService userService;
 	
 	public WebConfiguration(UserService userService){
 		this.userService = userService;
 		staticFileLocation("/public");
+		port(50000);
 		setRoutes();
 		
 	}
@@ -36,7 +47,10 @@ public class WebConfiguration {
 				addUserToSession(request, user);
 				response.redirect("/blog");
 			}
-			response.redirect("/");
+			else
+			{
+				response.redirect("/");
+			}
 			return modelAndView(null, "");
 		}, new FreeMarkerEngine());
 		before("/", (request, response) -> {
@@ -62,6 +76,13 @@ public class WebConfiguration {
 			if(authUser == null) {
 				response.redirect("/");
 			}
+			List<String> users;
+
+			users = userService.getAllUsers();
+
+			for (String user : users){
+			System.out.println("Users: " + user);
+			}
 		});
 		
 		
@@ -71,13 +92,21 @@ public class WebConfiguration {
 		
 		
 		post("/register", (request,response) -> {
+			
 			String firstname = request.queryParams("firstname");
 			String lastname = request.queryParams("lastname");
 			String login = request.queryParams("login");
 			String password = request.queryParams("password");
 			User user = new User(firstname,lastname,login,password);
-			userService.createUser(user);
-			return modelAndView(null, "registerSuccess.ftl");
+			Map<String, String> errorsWhileRegister = userService.getErrorsWhileRegister(user);
+			
+			if(errorsWhileRegister == null){
+				userService.createUser(user);
+				return modelAndView(null, "registerSuccess.ftl");
+			}else{
+				return modelAndView(errorsWhileRegister, "register.ftl");
+			}
+			
 		}, new FreeMarkerEngine());
 		before("/register", (request, response) -> {
 			User authUser = getUserFromSession(request);
