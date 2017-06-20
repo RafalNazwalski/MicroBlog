@@ -47,7 +47,10 @@ public class WebConfiguration {
 				addUserToSession(request, user);
 				response.redirect("/blog");
 			}
-			response.redirect("/");
+			else
+			{
+				response.redirect("/");
+			}
 			return modelAndView(null, "");
 		}, new FreeMarkerEngine());
 		before("/", (request, response) -> {
