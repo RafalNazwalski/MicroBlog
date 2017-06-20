@@ -1,2 +1,5 @@
 target/
 .idea/
+MicroBlog.iml
+/.classpath
+/.project
