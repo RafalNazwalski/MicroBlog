@@ -2,6 +2,8 @@ package pl.microblog.config;
 
 import static spark.Spark.*;
 
+import java.util.Map;
+
 import pl.microblog.model.User;
 import pl.microblog.service.UserService;
 import spark.ModelAndView;
@@ -71,13 +73,21 @@ public class WebConfiguration {
 		
 		
 		post("/register", (request,response) -> {
+			
 			String firstname = request.queryParams("firstname");
 			String lastname = request.queryParams("lastname");
 			String login = request.queryParams("login");
 			String password = request.queryParams("password");
 			User user = new User(firstname,lastname,login,password);
-			userService.createUser(user);
-			return modelAndView(null, "registerSuccess.ftl");
+			Map<String, String> errorsWhileRegister = userService.getErrorsWhileRegister(user);
+			
+			if(errorsWhileRegister == null){
+				userService.createUser(user);
+				return modelAndView(null, "registerSuccess.ftl");
+			}else{
+				return modelAndView(errorsWhileRegister, "register.ftl");
+			}
+			
 		}, new FreeMarkerEngine());
 		before("/register", (request, response) -> {
 			User authUser = getUserFromSession(request);
