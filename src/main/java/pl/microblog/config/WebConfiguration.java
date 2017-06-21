@@ -128,7 +128,7 @@ public class WebConfiguration {
 			message.setText(text);
 			messageService.addMessage(message);
 			response.redirect("/blog");
-			return null;
+			return modelAndView(null,"");
 		}, new FreeMarkerEngine());
 		before("/blog/addmessage", (request, response) -> {
 			User authUser = getUserFromSession(request);
