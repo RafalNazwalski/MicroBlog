@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -29,8 +30,10 @@ public class MessageDaoImpl implements MessageDao{
  		+ "join follower f on u.uzytkownik_id = f.userid"
 		+"join wpis w on f.followee_id = w.author_id";
 
+
 	public MessageDaoImpl(){}
 
+	@Autowired
 	public MessageDaoImpl(DataSource ds) {
 		template = new NamedParameterJdbcTemplate(ds);
 	}
@@ -41,8 +44,8 @@ public class MessageDaoImpl implements MessageDao{
 
 		params.put("text", message.getText());
 		params.put("author", message.getAuthor());
-		params.put("date", message.getDate());
-		
+		params.put("date", null);
+
 		template.update(CREATE_MESSAGE, params);
 	}
 	

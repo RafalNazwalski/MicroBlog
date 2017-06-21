@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,8 @@ public class FollowerDaoImpl implements FollowerDao{
 	private NamedParameterJdbcTemplate template;
 	private static final String ADD_TO_FOLLOWER = "INSERT INTO follower(follower_id,followee_id) VALUES(:follower_id,:followee_id)";
 	private static final String REMOVE_TO_FOLLOWER = "DELETE * FROM follower WHERE follower_id = :follower_id AND followee_id = :followee_id";
-	
+
+	@Autowired
 	public FollowerDaoImpl(DataSource ds) {
 		template = new NamedParameterJdbcTemplate(ds);
 	}
