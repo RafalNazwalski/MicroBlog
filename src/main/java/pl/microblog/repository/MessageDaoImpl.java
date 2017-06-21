@@ -43,8 +43,8 @@ public class MessageDaoImpl implements MessageDao{
 		Map<String,Object> params = new HashMap<>();
 
 		params.put("text", message.getText());
-		params.put("author", message.getAuthor());
-		params.put("date", null);
+		params.put("author_id", message.getAuthor());
+		params.put("wpis_date", null);
 
 		template.update(CREATE_MESSAGE, params);
 	}
