@@ -2,28 +2,29 @@ package pl.microblog.config;
 
 import static spark.Spark.*;
 
-import java.util.Map;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pl.microblog.Application;
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import pl.microblog.model.Message;
 import pl.microblog.model.User;
+import pl.microblog.service.MessageService;
 import pl.microblog.service.UserService;
 import spark.ModelAndView;
 import spark.Request;
 import spark.template.freemarker.FreeMarkerEngine;
-
-import javax.security.auth.login.Configuration;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+@Component
 public class WebConfiguration {
 
 	private UserService userService;
-	
-	public WebConfiguration(UserService userService){
+	private MessageService messageService;
+
+	@Autowired
+	public WebConfiguration(UserService userService, MessageService messageService){
 		this.userService = userService;
+		this.messageService = messageService;
 		staticFileLocation("/public");
 		port(50000);
 		setRoutes();
@@ -42,16 +43,13 @@ public class WebConfiguration {
 			User user = new User();
 			user.setLogin(login);
 			user.setPassword(password);
-			boolean validateUser = userService.validateUser(user);
-			if(validateUser){
+			Map<String, String> errorsWhileLogin = userService.validateUser(user);
+			if(errorsWhileLogin.isEmpty()){
 				addUserToSession(request, user);
 				response.redirect("/blog");
 			}
-			else
-			{
-				response.redirect("/");
-			}
-			return modelAndView(null, "");
+
+			return modelAndView(errorsWhileLogin, "index.ftl");
 		}, new FreeMarkerEngine());
 		before("/", (request, response) -> {
 			User authUser = getUserFromSession(request);
@@ -112,6 +110,25 @@ public class WebConfiguration {
 			User authUser = getUserFromSession(request);
 			if(authUser != null) {
 				response.redirect("/blog");
+			}
+		});
+
+
+		post("/blog/addmessage",(request,response) -> {
+			User loggedUser = getUserFromSession(request);
+			Message message = new Message();
+			message.setAuthor(loggedUser.getId());
+			message.setDate(new Date());
+			String text = request.queryParams("text");
+			message.setText(text);
+			messageService.addMessage(message);
+			response.redirect("/blog");
+			return null;
+		}, new FreeMarkerEngine());
+		before("/blog/addmessage", (request, response) -> {
+			User authUser = getUserFromSession(request);
+			if(authUser == null) {
+				response.redirect("/");
 			}
 		});
 		

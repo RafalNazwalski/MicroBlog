@@ -54,20 +54,21 @@ public class UserService {
 		return check;
 	}
 	
-	public boolean validateUser(User user){
-		if(user.getLogin() == null){
-			return false;
-		}
-		 User userBylogin = userdao.getUserBylogin(user.getLogin());
-		 boolean correctUser = true;
+	public Map<String,String> validateUser(User user){
+		HashMap<String, String> errors = new HashMap<>();
+		User userBylogin = userdao.getUserBylogin(user.getLogin());
 
-		 if(userBylogin == null){
-			return false;
-		 }
-		 if(!verifyPassword(user.getPassword(), userBylogin.getPassword())){
-			 correctUser = false;
-		 }
-		 return correctUser;
+		if(userBylogin == null || user.getLogin() == null) {
+			errors.put("loginInvalid", "Nieprawidłowy login");
+		}
+
+
+		if(userBylogin == null || userBylogin.getPassword().isEmpty() || (!verifyPassword(user.getPassword(), userBylogin.getPassword()))){
+			errors.put("passwordInvalid","Nieprawidłowe hasło");
+		}
+
+
+		 return errors;
 	}
 	
 	public Map<String,String> getErrorsWhileRegister(User user){

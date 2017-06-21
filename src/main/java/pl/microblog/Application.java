@@ -13,13 +13,7 @@ public class Application {
 	
 	public static void main(String[] args){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Application.class);
-		new WebConfiguration(ctx.getBean(UserService.class));
 		ctx.registerShutdownHook();
 	}
-	
-	/*
-	 * 1. Zrobic rejestracje
-	 * 2. walidacja?
-	 */
 
 }
