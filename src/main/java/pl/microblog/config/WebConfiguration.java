@@ -4,6 +4,7 @@ import static spark.Spark.*;
 
 import java.util.*;
 
+import freemarker.ext.beans.HashAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.microblog.model.Message;
@@ -40,8 +41,7 @@ public class WebConfiguration {
 		post("/", (request,response) -> {
 			String login = request.queryParams("login");
 			String password = request.queryParams("password");
-			User user = new User();
-			user.setLogin(login);
+			User user = userService.getUserBylogin(login);
 			user.setPassword(password);
 			Map<String, String> errorsWhileLogin = userService.validateUser(user);
 			if(errorsWhileLogin.isEmpty()){
@@ -67,20 +67,25 @@ public class WebConfiguration {
 		
 		
 		get("/blog", (request,reponse) -> {
-			return new ModelAndView(null, "blog.ftl");
+			Map<String, List<String>> allUsers = new TreeMap<>();
+			List<String> users;
+
+			users = userService.getAllUsers();
+
+			allUsers.put("users", users);
+
+			for (String user : users){
+				System.out.println("Users: " + user);
+			}
+
+			return new ModelAndView(allUsers, "blog.ftl");
 		}, new FreeMarkerEngine());
 		before("/blog", (request, response) -> {
 			User authUser = getUserFromSession(request);
 			if(authUser == null) {
 				response.redirect("/");
 			}
-			List<String> users;
 
-			users = userService.getAllUsers();
-
-			for (String user : users){
-			System.out.println("Users: " + user);
-			}
 		});
 		
 		
@@ -119,7 +124,7 @@ public class WebConfiguration {
 			Message message = new Message();
 			message.setAuthor(loggedUser.getId());
 			message.setDate(new Date());
-			String text = request.queryParams("text");
+			String text = request.queryParams("postText");
 			message.setText(text);
 			messageService.addMessage(message);
 			response.redirect("/blog");

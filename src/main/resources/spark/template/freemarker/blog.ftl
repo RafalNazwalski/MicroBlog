@@ -54,28 +54,19 @@
                             <!--
                                 powtarzac dla kazdego uzytkownika
                             -->
+                            <#if users??>
+                                <#list users as user>
                             <div class="form-group">
                                 <div class="col-lg-10">
-                                    <h4>Januszel</h4>
+                                    <h4>${user}</h4>
+
                                 </div>
                                 <div>
-                                    <input name="IdUZYTKOWNIKA" class="form-control" type="checkbox">
+                                    <input name="IdUzytkownika" class="form-control" type="checkbox">
                                 </div>
                             </div>
-
-                            <!--
-                                powtarzac dla kazdego uzytkownika
-                            -->
-
-                            <div class="form-group">
-                                <div class="col-lg-10">
-                                    <h4>Januszel Drugi</h4>
-                                </div>
-                                <div>
-                                    <input name="IdUZYTKOWNIKA" class="form-control" checked="checked" type="checkbox">
-                                </div>
-                            </div>
-
+                                </#list>
+                            </#if>
 
                         </div>
                     </div>
@@ -91,8 +82,8 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <form action="" method="post">
-                                <textarea placeholder="Wpisz swoj post..." name="post" rows="5" class="form-control"></textarea>
+                            <form action="/blog/addmessage" method="post">
+                                <textarea placeholder="Wpisz swoj post..." name="postText" rows="5" class="form-control"></textarea>
                                 <br />
                                 <input type="submit" value="Wyslij" class="btn btn-success">
                             </form>
@@ -108,7 +99,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <span class="text-success"><b>Nazwa Autora postu</b></span>
-                                <textarea name="post" rows="3" class="form-control" disabled>TRESC POSTU</textarea>
+                                <textarea name="post" rows="3" class="form-control" disabled>TRESC POSTU:
+                                    </textarea>
                             </div>
                         </div>
                         <button class="btn btn-danger" name="ID_POSTU">Usun post</button>
