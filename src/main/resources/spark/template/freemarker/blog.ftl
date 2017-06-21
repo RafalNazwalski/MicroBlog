@@ -11,6 +11,15 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <style>
+		input[type=checkbox].form-control {
+			width: 25px;
+			height: 25px;
+			display: inline-block;
+			vertical-align: -8px;
+		}
+	</style>
 </head>
 
 <body>
@@ -31,40 +40,101 @@
     </div>
 </nav>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    Uzytkownicy
+                </div>
+                <div class="panel-body">
+                    <div class="row col-lg-12">
+                        <div class="form-horizontal">
+
+                            <!--
+                                powtarzac dla kazdego uzytkownika
+                            -->
+                            <div class="form-group">
+                                <div class="col-lg-10">
+                                    <h4>Januszel</h4>
+                                </div>
+                                <div>
+                                    <input name="IdUZYTKOWNIKA" class="form-control" type="checkbox">
+                                </div>
+                            </div>
+
+                            <!--
+                                powtarzac dla kazdego uzytkownika
+                            -->
+
+                            <div class="form-group">
+                                <div class="col-lg-10">
+                                    <h4>Januszel Drugi</h4>
+                                </div>
+                                <div>
+                                    <input name="IdUZYTKOWNIKA" class="form-control" checked="checked" type="checkbox">
+                                </div>
+                            </div>
 
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                    Posty
+                </div>
+                <div class="panel-body">
 
-<h1>ZALOGOWANO</h1>
-<a href="logout">Wyloguj sie</a>
-<br><br>
-<table border="1">
-    <tr>
-        <td>
-            <table>
-                <tr>
-                    <td>Użytkownicy:</td>
-                </tr>
-                <tr>
-                    <td>Lista uzytkownikow z bazy</td>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="" method="post">
+                                <textarea placeholder="Wpisz swoj post..." name="post" rows="5" class="form-control"></textarea>
+                                <br />
+                                <input type="submit" value="Wyslij" class="btn btn-success">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <hr />
+                        <span class="text-info"><b>Posty uzytkownikow</b></span>
+                        <hr />
 
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table>
-                <tr>Wprowadz swój post</tr>
-                <tr>
-                    <td>Tutaj miejsce na post</td>
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table>
-                <tr>Miejsce na przycisk (opcjonalnie), może być przy poście przycisk</tr>
-            </table>
-        </td>
-    </tr>
+                        <!-- POWTARZAC DLA KAZDEGO POSTA -->
 
-</table>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="text-success"><b>Nazwa Autora postu</b></span>
+                                <textarea name="post" rows="3" class="form-control" disabled>TRESC POSTU</textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger" name="ID_POSTU">Usun post</button>
+                        <br /><br />
+
+                        <!-- POWTARZAC DLA KAZDEGO POSTA -->
+
+                        <!-- POWTARZAC DLA KAZDEGO POSTA -->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="text-success"><b>Nazwa Autora postu</b></span>
+                                <textarea name="post" rows="3" class="form-control" disabled>TRESC POSTU</textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger" name="ID_POSTU">Usun post</button>
+                        <br /><br />
+
+                        <!-- POWTARZAC DLA KAZDEGO POSTA -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
