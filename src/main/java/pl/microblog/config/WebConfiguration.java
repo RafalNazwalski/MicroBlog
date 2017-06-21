@@ -67,18 +67,19 @@ public class WebConfiguration {
 		
 		
 		get("/blog", (request,reponse) -> {
-			Map<String, List<String>> allUsers = new TreeMap<>();
+			User loggedUser = getUserFromSession(request);
+			Map<String, List<String>> userInfo = new TreeMap<>();
 			List<String> users;
 
 			users = userService.getAllUsers();
+			List<Message> messagesLoggedUser = messageService.getMessageByUser(loggedUser);
+			List<String> messagesText = new ArrayList<>();
+			messagesLoggedUser.forEach(message -> messagesText.add(message.getText()));
 
-			allUsers.put("users", users);
+			userInfo.put("users", users);
+			userInfo.put("messages",messagesText);
 
-			for (String user : users){
-				System.out.println("Users: " + user);
-			}
-
-			return new ModelAndView(allUsers, "blog.ftl");
+			return new ModelAndView(userInfo, "blog.ftl");
 		}, new FreeMarkerEngine());
 		before("/blog", (request, response) -> {
 			User authUser = getUserFromSession(request);

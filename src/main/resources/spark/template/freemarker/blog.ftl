@@ -95,29 +95,34 @@
                         <hr />
 
                         <!-- POWTARZAC DLA KAZDEGO POSTA -->
-
+                        <#if messages??>
+                        <#list messages as message>
                         <div class="row">
+
                             <div class="col-lg-12">
-                                <span class="text-success"><b>Nazwa Autora postu</b></span>
-                                <textarea name="post" rows="3" class="form-control" disabled>TRESC POSTU:
+                                <span class="text-success"><b>Twój post:</b></span>
+                                <textarea name="post" rows="3" class="form-control" disabled>${message}
                                     </textarea>
                             </div>
+
                         </div>
                         <button class="btn btn-danger" name="ID_POSTU">Usun post</button>
                         <br /><br />
+                        </#list>
+                        </#if>
 
                         <!-- POWTARZAC DLA KAZDEGO POSTA -->
 
                         <!-- POWTARZAC DLA KAZDEGO POSTA -->
 
-                        <div class="row">
+               <#--         <div class="row">
                             <div class="col-lg-12">
                                 <span class="text-success"><b>Nazwa Autora postu</b></span>
                                 <textarea name="post" rows="3" class="form-control" disabled>TRESC POSTU</textarea>
                             </div>
                         </div>
                         <button class="btn btn-danger" name="ID_POSTU">Usun post</button>
-                        <br /><br />
+                        <br /><br />-->
 
                         <!-- POWTARZAC DLA KAZDEGO POSTA -->
                     </div>
