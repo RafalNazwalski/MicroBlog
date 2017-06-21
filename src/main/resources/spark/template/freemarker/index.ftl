@@ -30,6 +30,11 @@
                                                                         <div class="col-lg-8">
                                                                                 <input type="text" name="login" class="form-control" placeholder="Login..." />
                                                                         </div>
+                                                                <#if loginInvalid??>
+                                                                    <span class="text-danger">
+                                                                    ${loginInvalid}
+                                                                    </span>
+                                                                </#if>
                                                                 </div>
                                                                 <div class="form-group">
                                                                         <label class="col-lg-2 control-label">Hasło:</label>
@@ -37,6 +42,11 @@
                                                                                 <input type="password" name="password" placeholder="Hasło..." class="form-control" />
                                                                         </div>
                                                                 </div>
+                                                        <#if passwordInvalid??>
+                                                            <span class="text-danger">
+                                                            ${passwordInvalid}
+                                                            </span>
+                                                        </#if>
                                                                 <div class="row">
                                                                         <div class="col-lg-2 col-lg-offset-8">
                                                                                 <input type="submit" class="btn btn-success" value="Zaloguj" />

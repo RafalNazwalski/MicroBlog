@@ -42,16 +42,13 @@ public class WebConfiguration {
 			User user = new User();
 			user.setLogin(login);
 			user.setPassword(password);
-			boolean validateUser = userService.validateUser(user);
-			if(validateUser){
+			Map<String, String> errorsWhileLogin = userService.validateUser(user);
+			if(errorsWhileLogin.isEmpty()){
 				addUserToSession(request, user);
 				response.redirect("/blog");
 			}
-			else
-			{
-				response.redirect("/");
-			}
-			return modelAndView(null, "");
+
+			return modelAndView(errorsWhileLogin, "index.ftl");
 		}, new FreeMarkerEngine());
 		before("/", (request, response) -> {
 			User authUser = getUserFromSession(request);
