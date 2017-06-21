@@ -9,7 +9,6 @@ public class Follower {
 	}
 	
 	public Follower(Integer idfollower, Integer idfollowee) {
-		super();
 		Idfollower = idfollower;
 		Idfollowee = idfollowee;
 	}

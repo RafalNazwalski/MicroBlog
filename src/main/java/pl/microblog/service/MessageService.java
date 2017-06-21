@@ -23,6 +23,10 @@ public class MessageService {
 		messageDao.addMessage(message);
 	}
 	
+	public void removeMessage(Message message) {
+		messageDao.removeMessage(message);
+	}
+	
 	public List<Message> getMessageByUser(User user) {
 		List<Message> messageByUser = messageDao.getMessageByUser(user);
 		return messageByUser;
