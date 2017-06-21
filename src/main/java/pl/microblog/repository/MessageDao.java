@@ -15,6 +15,6 @@ public interface MessageDao {
 	
 	public void addMessage(Message message);
 	
-	public void removeMessage(User user);
+	public void removeMessage(Message message);
 
 }

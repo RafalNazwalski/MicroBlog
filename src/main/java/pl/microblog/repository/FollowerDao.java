@@ -1,12 +1,12 @@
 package pl.microblog.repository;
 
-import pl.microblog.model.User;
+import pl.microblog.model.Follower;
 
 public interface FollowerDao {
 
-	public void addUserToFollower(User user);
+	public void addUserToFollower(Follower follower);
 	
-	public void removeUserToFollower(User user);
+	public void removeUserToFollower(Follower follower);
 	
-	public Boolean checkFollowerOnMyList(User user);
+	public Boolean checkFollowerOnMyList(Follower follower);
 }

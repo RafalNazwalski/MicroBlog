@@ -38,23 +38,21 @@ public class MessageDaoImpl implements MessageDao{
 	@Override
 	public void addMessage(Message message) {
 		Map<String,Object> params = new HashMap<>();
-		
-		String text = message.getText();
-		Integer author = message.getAuthor();
-		Date date = message.getDate();
-		
-		params.put("text", text);
-		params.put("author", author);
-		params.put("date", date);
+
+		params.put("text", message.getText());
+		params.put("author", message.getAuthor());
+		params.put("date", message.getDate());
 		
 		template.update(CREATE_MESSAGE, params);
 	}
 	
 	@Override
-	public void removeMessage(User user) {
+	public void removeMessage(Message message) {
 		Map<String,Object> params = new HashMap<>();
 		
+		params.remove("wpis_id", message.getId());
 		
+		template.update(REMOVE_MESSAGE_BY_WPIS_ID, params);
 		
 	}
 
