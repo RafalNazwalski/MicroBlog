@@ -42,7 +42,8 @@ public class WebConfiguration {
 			String login = request.queryParams("login");
 			String password = request.queryParams("password");
 			User user = userService.getUserBylogin(login);
-			user.setPassword(password);
+			if(user != null) user.setPassword(password);
+
 			Map<String, String> errorsWhileLogin = userService.validateUser(user);
 			if(errorsWhileLogin.isEmpty()){
 				addUserToSession(request, user);

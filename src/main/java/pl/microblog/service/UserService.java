@@ -56,17 +56,22 @@ public class UserService {
 	
 	public Map<String,String> validateUser(User user){
 		HashMap<String, String> errors = new HashMap<>();
-		User userBylogin = userdao.getUserBylogin(user.getLogin());
 
-		if(userBylogin == null || user.getLogin() == null) {
+		if(user == null){
 			errors.put("loginInvalid", "Nieprawidłowy login");
+		}else {
+
+			User userBylogin = userdao.getUserBylogin(user.getLogin());
+
+			if (userBylogin == null || user.getLogin() == null) {
+				errors.put("loginInvalid", "Nieprawidłowy login");
+			}
+
+
+			if (userBylogin == null || userBylogin.getPassword().isEmpty() || (!verifyPassword(user.getPassword(), userBylogin.getPassword()))) {
+				errors.put("passwordInvalid", "Nieprawidłowe hasło");
+			}
 		}
-
-
-		if(userBylogin == null || userBylogin.getPassword().isEmpty() || (!verifyPassword(user.getPassword(), userBylogin.getPassword()))){
-			errors.put("passwordInvalid","Nieprawidłowe hasło");
-		}
-
 
 		 return errors;
 	}
